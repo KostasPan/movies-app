@@ -1,0 +1,23 @@
+<div *ngIf="error_message">
+    No movie details <br>
+    {{error_message}}
+</div>
+<div *ngIf="movie.id">
+
+    <button mat-raised-button (click)="rateMovie()">RATE THIS MOVIE</button>
+
+    title {{movie.title}} <br>
+    overview {{movie.overview}} <br>
+    poster_path {{ MDB_IMG_BASE_URL + (movie.poster_path==null?'':movie.poster_path) }} <br>
+    <img *ngIf="movie.poster_path" [src]="MDB_IMG_BASE_URL + movie.poster_path" alt="">
+    budget {{movie.budget}} <br>
+    release_date {{movie.release_date}} <br>
+    revenue {{movie.revenue}} <br>
+    vote_average {{movie.vote_average}} <br>
+    vote_count {{movie.vote_count}} <br>
+    
+    spoken_languages 
+    <li *ngFor="let lang of movie.spoken_languages">
+        {{lang.english_name}}
+    </li>    
+</div>

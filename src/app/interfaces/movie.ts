@@ -7,4 +7,13 @@ export interface Movie {
     title: string,
     vote_average: number,
     vote_count: number,
+
+    budget: number, 
+    release_date: string, 
+    revenue: number,
+    spoken_languages: Array<SpokenLanguages>
+}
+
+interface SpokenLanguages {
+    english_name: string
 }

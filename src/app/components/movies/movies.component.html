@@ -1,12 +1,16 @@
 <div *ngIf="data">
     <li 
         *ngFor="let movie of data.results"
+        [routerLink]="['movie', movie.id]"
         class="list-group-item">
             {{ MDB_IMG_BASE_URL + (movie.poster_path==null?'':movie.poster_path) }}
             {{ movie.title }}
             {{ movie.vote_average }}
             {{ movie.vote_count }}
+            movie_id: {{movie.id}}
     </li>
     total_pages: {{data.total_pages}}
     total_results: {{data.total_results}}
+
+    <button mat-raised-button routerLink='movie'>Pick one</button>
 </div>
