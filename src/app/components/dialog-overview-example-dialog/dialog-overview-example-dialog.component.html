@@ -2,8 +2,12 @@
   Dialog Info
 </h1>
 
+DATA {{data}}
+
 <div mat-dialog-content>
-  <app-movie-details></app-movie-details>
+  <app-movie-details *ngIf="data.component == 'movie-details'"></app-movie-details>
+
+  <app-collections-list *ngIf="data.component == 'collections-list'" [data]="data"></app-collections-list>
 </div>
 
 <div mat-dialog-actions>

@@ -18,12 +18,11 @@ import {MaterialExampleModule} from '../material.module';
 import { InputStrengthDirective } from './directives/search-tab-validation.directive';
 import { MoviesComponent } from './components/movies/movies.component';
 import { DialogEntryComponent } from './components/dialog-entry/dialog-entry.component';
-import { DialogOverviewExampleComponent } from './components/dialog-overview-example/dialog-overview-example.component';
 import { DialogOverviewExampleDialogComponent } from './components/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
-import { DataService } from './services/data.service';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { CollectionsComponent } from './pages/collections/collections.component';
-import { CollectionsListComponent } from './pages/collections-list/collections-list.component';
+import { CollectionsListComponent } from './components/collections-list/collections-list.component';
+import { CollectionComponent } from './pages/collection/collection.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +32,11 @@ import { CollectionsListComponent } from './pages/collections-list/collections-l
     InputStrengthDirective,
     MoviesComponent,
     DialogEntryComponent,
-    DialogOverviewExampleComponent,
     DialogOverviewExampleDialogComponent,
     MovieDetailsComponent,
     CollectionsComponent,
-    CollectionsListComponent
+    CollectionsListComponent,
+    CollectionComponent,
   ],
   imports: [
     MaterialExampleModule,
@@ -48,8 +47,8 @@ import { CollectionsListComponent } from './pages/collections-list/collections-l
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  entryComponents: [DialogOverviewExampleComponent, DialogOverviewExampleDialogComponent],
-  providers: [DataService, CookieService],
+  entryComponents: [DialogOverviewExampleDialogComponent],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

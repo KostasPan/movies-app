@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DialogEntryComponent } from './components/dialog-entry/dialog-entry.component';
-import { DialogOverviewExampleComponent } from './components/dialog-overview-example/dialog-overview-example.component';
+import { CollectionComponent } from './pages/collection/collection.component';
 import { CollectionsComponent } from './pages/collections/collections.component';
 import { SearchComponent } from './pages/search/search.component';
 
@@ -20,15 +20,9 @@ const routes: Routes = [
     path:'collections', 
     component: CollectionsComponent,
   },
-  {
-    path: 'home',
-    component: DialogOverviewExampleComponent,
-    children: [
-      {
-        path: 'dialog',
-        component: DialogEntryComponent
-      }
-    ]
+  { 
+    path:'collection/:id', 
+    component: CollectionComponent,
   },
   { path: '**', pathMatch:'full',  redirectTo: 'search' }
 ];

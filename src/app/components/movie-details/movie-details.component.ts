@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { Movie } from 'src/app/interfaces/movie';
 import { Rating } from 'src/app/interfaces/rating';
 import { MovieDetailsService } from 'src/app/services/movie-details.service';
@@ -21,7 +20,6 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private movieDetailsService:MovieDetailsService,
     private snackBarService:SnackbarService,
-    private cookieService: CookieService,
   ) { }
 
   ngOnInit(): void {
@@ -82,5 +80,4 @@ export class MovieDetailsComponent implements OnInit {
       }
     })
   }
-
 }
