@@ -23,6 +23,12 @@ const routes: Routes = [
   { 
     path:'collection/:id', 
     component: CollectionComponent,
+    children: [
+      {
+        path: 'movie/:id',
+        component: DialogEntryComponent
+      }
+    ]
   },
   { path: '**', pathMatch:'full',  redirectTo: 'search' }
 ];

@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Collection } from 'src/app/interfaces/collection';
 import { Movie } from 'src/app/interfaces/movie';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -23,7 +24,7 @@ export class CollectionsListComponent implements OnInit, OnChanges {
   @Input() data!: any;
   @Input() newCollection!: Collection;
 
-  constructor(private localStore: LocalStorageService, private snackBar: SnackbarService) {}
+  constructor(private localStore: LocalStorageService, private snackBar: SnackbarService, private router: Router,) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('value changed', this.newCollection);
@@ -44,6 +45,8 @@ export class CollectionsListComponent implements OnInit, OnChanges {
     // route to collection page with movies
     console.log('GO to collection', id);
     console.log('Movies', movies);
+
+    this.router.navigate(['/collection', id]);
   }
 
   addMovieToCollection(id: number, movies: Array<Movie>) {

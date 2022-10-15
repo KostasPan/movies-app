@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SearchResults } from 'src/app/interfaces/search-results';
 import { config as CONFIG } from 'src/utils/config'; 
-import { CollectionsListComponent } from 'src/app/components/collections-list/collections-list.component';
 import { Movie } from 'src/app/interfaces/movie';
 import { DialogOverviewExampleDialogComponent } from '../dialog-overview-example-dialog/dialog-overview-example-dialog.component';
+import { Pagination } from 'src/app/interfaces/pagination';
 
 @Component({
   selector: 'app-movies',
@@ -12,7 +11,8 @@ import { DialogOverviewExampleDialogComponent } from '../dialog-overview-example
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent {
-  @Input() data!:SearchResults;
+  @Input() movies!:Array<Movie>
+  @Input() pagination!:Pagination
 
   public MDB_IMG_BASE_URL:string = CONFIG.MOVIEDB_IMAGES
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDetailsService } from 'src/app/services/movie-details.service';
 import { DialogOverviewExampleDialogComponent } from '../dialog-overview-example-dialog/dialog-overview-example-dialog.component';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-dialog-entry',
@@ -14,7 +15,8 @@ export class DialogEntryComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private router: Router,
     private route: ActivatedRoute,
-    private movieDetailsService: MovieDetailsService) {
+    private movieDetailsService: MovieDetailsService,
+    private location: Location) {
     this.openDialog();
   }
   openDialog(): void {
@@ -27,7 +29,7 @@ export class DialogEntryComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
       width: '80%',
-      data: { component: 'movie-details', routeConfig: this.routeConfig } // TODO: kata to click, analoga apo pou erxetai h to path na allazei kai component? component-name
+      data: { component: 'movie-details', routeConfig: this.routeConfig }
     });
 
     this.movieDetailsService.mid = this.route.snapshot.params['id'];
@@ -36,7 +38,9 @@ export class DialogEntryComponent implements OnInit {
     console.log(this.route.snapshot)
 
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['../'], { relativeTo: this.route });
+      this.location.back()
+      console.log("TEST:",this.route.snapshot)
+
       this.movieDetailsService.mid = 0;
     });
   }

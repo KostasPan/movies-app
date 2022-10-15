@@ -1,6 +1,6 @@
-<h2 *ngIf="!collections">
+<div *ngIf="!collections.length">
   No collections yet
-</h2>
+</div>
 
 <mat-nav-list *ngIf="collections">
   <mat-list-item *ngFor="let c of collections" (click)="data.addToCollection?addMovieToCollection(c.id, c.movies):goToCollection(c.id, c.movies)">

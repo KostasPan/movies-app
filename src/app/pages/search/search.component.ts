@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchResults } from 'src/app/interfaces/search-results';
+import { Movie } from 'src/app/interfaces/movie';
+import { Pagination } from 'src/app/interfaces/pagination';
 import { SearchService } from 'src/app/services/search.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
@@ -11,7 +12,8 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class SearchComponent{
   private query:string = ''
   
-  public results!:SearchResults
+  public movies_results!:Array<Movie>
+  public pagination_results!:Pagination
 
   constructor(
     private searchService:SearchService,
@@ -24,8 +26,9 @@ export class SearchComponent{
 
     this.searchService.getMovies(query, 1).subscribe({
       next: response => {
-        this.results = response
-        console.log('results: ', this.results)
+        this.movies_results = response.results
+        const {movies, ...pagination } = response
+        this.pagination_results = pagination
       },
       error: e => {
         this.snackBarService.openSnackBar('Error occurred, try again later.', 'x')

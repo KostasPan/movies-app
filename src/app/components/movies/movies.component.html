@@ -1,6 +1,6 @@
-<div *ngIf="data">
+<div *ngIf="movies">
     <li 
-        *ngFor="let movie of data.results"
+        *ngFor="let movie of movies"
         class="list-group-item">
             {{ MDB_IMG_BASE_URL + (movie.poster_path==null?'':movie.poster_path) }}
             {{ movie.title }}
@@ -12,6 +12,9 @@
 
             <button mat-raised-button (click)="openCollectionsDialog(movie)">Add to Collection</button>
     </li>
-    total_pages: {{data.total_pages}}
-    total_results: {{data.total_results}}
+</div>
+
+<div *ngIf="pagination">
+    total_pages: {{pagination.total_pages}}
+    total_results: {{pagination.total_results}}
 </div>
