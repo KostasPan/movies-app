@@ -8,9 +8,8 @@ describe('SearchTabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchTabComponent ]
-    })
-    .compileComponents();
+      declarations: [SearchTabComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchTabComponent);
     component = fixture.componentInstance;

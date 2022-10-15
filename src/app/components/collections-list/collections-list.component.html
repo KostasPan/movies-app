@@ -1,10 +1,11 @@
-<div *ngIf="!collections.length">
-  No collections yet
-</div>
+<div *ngIf="!collections.length">No collections yet</div>
 
 <mat-nav-list *ngIf="collections">
-  <mat-list-item *ngFor="let c of collections" (click)="data.addToCollection?addMovieToCollection(c.id, c.movies):goToCollection(c.id, c.movies)">
-    <span mat-line>{{c.title}}</span>
-    <span mat-line>{{c.description}}</span>
+  <mat-list-item
+    *ngFor="let c of collections"
+    (click)="data.addToCollection ? addMovieToCollection(c.id, c.movies) : goToCollection(c.id, c.movies)"
+  >
+    <span mat-line>{{ c.title }}</span>
+    <span mat-line>{{ c.description }}</span>
   </mat-list-item>
 </mat-nav-list>

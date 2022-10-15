@@ -13,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MaterialExampleModule} from '../material.module';
+import { MaterialExampleModule } from '../material.module';
 
 import { InputStrengthDirective } from './directives/search-tab-validation.directive';
 import { MoviesComponent } from './components/movies/movies.component';
@@ -49,6 +49,6 @@ import { CollectionComponent } from './pages/collection/collection.component';
   ],
   entryComponents: [DialogOverviewExampleDialogComponent],
   providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

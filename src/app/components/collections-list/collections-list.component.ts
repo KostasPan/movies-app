@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Collection } from 'src/app/interfaces/collection';
 import { Movie } from 'src/app/interfaces/movie';
@@ -24,7 +18,7 @@ export class CollectionsListComponent implements OnInit, OnChanges {
   @Input() data!: any;
   @Input() newCollection!: Collection;
 
-  constructor(private localStore: LocalStorageService, private snackBar: SnackbarService, private router: Router,) {}
+  constructor(private localStore: LocalStorageService, private snackBar: SnackbarService, private router: Router) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('value changed', this.newCollection);
@@ -35,10 +29,7 @@ export class CollectionsListComponent implements OnInit, OnChanges {
 
   addNewCollection(collection: Collection) {
     this.collections.push(collection);
-    this.localStore.saveData(
-      CONFIG.COLLECTIONS_LS_NAME,
-      JSON.stringify(this.collections)
-    );
+    this.localStore.saveData(CONFIG.COLLECTIONS_LS_NAME, JSON.stringify(this.collections));
   }
 
   goToCollection(id: number, movies: Array<Movie>) {
@@ -53,21 +44,18 @@ export class CollectionsListComponent implements OnInit, OnChanges {
     // route to collection page with movies
     console.log('ADD to collection', id, movies);
 
-    let cindex:number = this.collections.findIndex(el => el.id == id)
-    let mid:number = this.collections[cindex].movies.findIndex(el => el.id == this.data.movie.id)
+    let cindex: number = this.collections.findIndex((el) => el.id == id);
+    let mid: number = this.collections[cindex].movies.findIndex((el) => el.id == this.data.movie.id);
 
-    console.log(mid)
+    console.log(mid);
 
     if (mid >= 0) {
-      this.snackBar.openSnackBar('You have already added this movie to collection', 'x')
+      this.snackBar.openSnackBar('You have already added this movie to collection', 'x');
     } else {
-      movies.push(this.data.movie)
-      this.collections[cindex].movies = movies
-      this.localStore.saveData(
-        CONFIG.COLLECTIONS_LS_NAME,
-        JSON.stringify(this.collections)
-      );
-      this.snackBar.openSnackBar('You successfully added movie to collection', 'x')
+      movies.push(this.data.movie);
+      this.collections[cindex].movies = movies;
+      this.localStore.saveData(CONFIG.COLLECTIONS_LS_NAME, JSON.stringify(this.collections));
+      this.snackBar.openSnackBar('You successfully added movie to collection', 'x');
     }
 
     // TODO: close dialog

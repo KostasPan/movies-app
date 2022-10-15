@@ -4,15 +4,21 @@
 <button mat-raised-button routerLink="">Home</button>
 
 <form *ngIf="isFormOpen">
-    <mat-form-field>
-        <mat-label>Title</mat-label>
-        <input matInput placeholder="Ex. My Comedies" name="title" [(ngModel)]="title" required>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Description</mat-label>
-        <input matInput placeholder="Ex. The best comedies i have ever seen" name="description" [(ngModel)]="description" required>
-    </mat-form-field>
-    <button mat-raised-button (click)="newCollectionData()">Create</button>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Ex. My Comedies" name="title" [(ngModel)]="title" required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input
+      matInput
+      placeholder="Ex. The best comedies i have ever seen"
+      name="description"
+      [(ngModel)]="description"
+      required
+    />
+  </mat-form-field>
+  <button mat-raised-button (click)="newCollectionData()">Create</button>
 </form>
 
-<app-collections-list [data]={addToCollection:false} [newCollection]="collection" ></app-collections-list>
+<app-collections-list [data]="{ addToCollection: false }" [newCollection]="collection"></app-collections-list>

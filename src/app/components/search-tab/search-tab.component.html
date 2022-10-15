@@ -1,12 +1,19 @@
 <form>
-    <mat-form-field appearance="fill">
-        <input matInput type="text" name="search"
-            required inputStrength ngModel #search="ngModel"
-            placeholder="Search a movie"
-            (keyup.enter)="!search.errors ? searchQuery(search.value) : null">
-            <mat-error *ngIf="search.errors?.['inputStrength']" >
-                - Minimum three (3) characters<br>
-                - Only alphanumerics
-            </mat-error>
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input
+      matInput
+      type="text"
+      name="search"
+      required
+      inputStrength
+      ngModel
+      #search="ngModel"
+      placeholder="Search a movie"
+      (keyup.enter)="!search.errors ? searchQuery(search.value) : null"
+    />
+    <mat-error *ngIf="search.errors?.['inputStrength']">
+      - Minimum three (3) characters<br />
+      - Only alphanumerics
+    </mat-error>
+  </mat-form-field>
 </form>

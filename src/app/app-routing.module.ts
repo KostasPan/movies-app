@@ -6,35 +6,35 @@ import { CollectionsComponent } from './pages/collections/collections.component'
 import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
-  { 
-    path:'search', 
+  {
+    path: 'search',
     component: SearchComponent,
     children: [
       {
         path: 'movie/:id',
-        component: DialogEntryComponent
-      }
-    ]
+        component: DialogEntryComponent,
+      },
+    ],
   },
-  { 
-    path:'collections', 
+  {
+    path: 'collections',
     component: CollectionsComponent,
   },
-  { 
-    path:'collection/:id', 
+  {
+    path: 'collection/:id',
     component: CollectionComponent,
     children: [
       {
         path: 'movie/:id',
-        component: DialogEntryComponent
-      }
-    ]
+        component: DialogEntryComponent,
+      },
+    ],
   },
-  { path: '**', pathMatch:'full',  redirectTo: 'search' }
+  { path: '**', pathMatch: 'full', redirectTo: 'search' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

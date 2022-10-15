@@ -1,3 +1,3 @@
 export interface Rating {
-    value: number
+  value: number;
 }

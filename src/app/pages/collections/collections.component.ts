@@ -4,21 +4,21 @@ import { Collection } from 'src/app/interfaces/collection';
 @Component({
   selector: 'app-collections',
   templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.css']
+  styleUrls: ['./collections.component.css'],
 })
 export class CollectionsComponent {
-  collection!:Collection
+  collection!: Collection;
 
-  title:string = ''
-  description:string = ''
+  title: string = '';
+  description: string = '';
 
-  isFormOpen:boolean = false
+  isFormOpen: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   newCollectionData() {
     if (this.title && this.description) {
-      this.collection = { title: this.title, description: this.description, id: new Date().getTime(), movies: [] }
+      this.collection = { title: this.title, description: this.description, id: new Date().getTime(), movies: [] };
     }
   }
 }

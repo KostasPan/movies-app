@@ -1,8 +1,12 @@
-<button mat-raised-button routerLink='/collections'>Collections</button>
+<button mat-raised-button routerLink="/collections">Collections</button>
 
 <app-search-tab (movieQueryEvent)="onMovieQueryInput($event)"></app-search-tab>
-<app-movies [pagination]="pagination_results" [movies]="movies_results" [isAddBtnShown]=true >
-    <!-- <app-pagination [pages]="pages"></app-pagination> -->
+<app-movies
+  [pagination]="pagination_results"
+  [movies]="movies_results"
+  [isAddBtnShown]="true"
+  (pageChangeEvent)="onPageChange($event)"
+>
 </app-movies>
 
 <router-outlet></router-outlet>
