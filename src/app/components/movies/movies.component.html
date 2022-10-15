@@ -10,7 +10,7 @@
             
             <button mat-raised-button [routerLink]="['movie', movie.id]">Open Movie</button>
 
-            <button mat-raised-button (click)="openCollectionsDialog(movie)">Add to Collection</button>
+            <button mat-raised-button *ngIf="isAddBtnShown" (click)="openCollectionsDialog(movie)">Add to Collection</button>
     </li>
 </div>
 

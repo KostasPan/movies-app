@@ -13,6 +13,7 @@ import { Pagination } from 'src/app/interfaces/pagination';
 export class MoviesComponent {
   @Input() movies!:Array<Movie>
   @Input() pagination!:Pagination
+  @Input() isAddBtnShown!:boolean
 
   public MDB_IMG_BASE_URL:string = CONFIG.MOVIEDB_IMAGES
 

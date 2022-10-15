@@ -14,6 +14,7 @@ export class MovieDetailsComponent implements OnInit {
   public movie = <Movie>{}
   public error_message!:string
   public MDB_IMG_BASE_URL:string = CONFIG.MOVIEDB_IMAGES
+  public rating!:number
 
   private session_id!:string
 
@@ -40,29 +41,29 @@ export class MovieDetailsComponent implements OnInit {
     })
   }
 
-
-
   rateMovie() {
     this.session_id = this.movieDetailsService.getGuestSessionIdFromCookie()
     if (!this.session_id) {
       this.setNewGuestSessionId()
     } else {
-      this.postRating(this.movie.id, this.session_id, { value: 10 })
-      console.log(this.movie.id, this.session_id, { value: 10 })
+      this.postRating(this.movie.id, this.session_id, { value: this.rating })
+      console.log(this.movie.id, this.session_id, { value: this.rating })
     }
   }
 
   postRating(mid:number, sid:string, r:Rating) {
-    this.movieDetailsService.postRating(mid, sid, r).subscribe({
-      next: response => {
-        console.log('postRating: ', response)
-        this.snackBarService.openSnackBar(`Rating: ${response.status_message}`, 'x')
-      },
-      error: e => {
-        this.snackBarService.openSnackBar('Error occurred, try again later.', 'x')
-        console.error(e)
-      }
-    })
+    if (this.rating && this.rating >= 0 && this.rating <= 10) {
+      this.movieDetailsService.postRating(mid, sid, r).subscribe({
+        next: response => {
+          console.log('postRating: ', response)
+          this.snackBarService.openSnackBar(`Rating: ${response.status_message}`, 'x')
+        },
+        error: e => {
+          this.snackBarService.openSnackBar('Error occurred, try again later.', 'x')
+          console.error(e)
+        }
+      })
+    }
   }
 
   setNewGuestSessionId() {

@@ -4,8 +4,17 @@
 </div>
 <div *ngIf="movie.id">
 
-    <button mat-raised-button (click)="rateMovie()">RATE THIS MOVIE</button>
+    <form #rateForm>
+        <mat-form-field name="" class="example-ripple-form-field" appearance="fill">
+            <input matInput [(ngModel)]="rating" required min="1" max="10" required type="number" name="rating_input" placeholder="Rating" ngModel #userRating="ngModel" (keyup.enter)="!userRating.errors ? rateMovie() : null">
+            <mat-error *ngIf="userRating.errors">
+                - Rating range 1 to 10
+            </mat-error>
+        </mat-form-field>
+        <button type="button" mat-raised-button (click)="rateMovie()">Submit rating</button>
+    </form>
 
+    
     title {{movie.title}} <br>
     overview {{movie.overview}} <br>
     poster_path {{ MDB_IMG_BASE_URL + (movie.poster_path==null?'':movie.poster_path) }} <br>
