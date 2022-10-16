@@ -1,0 +1,9 @@
+.app {
+    display: flex;
+    justify-content: center;
+}
+
+.app .container {
+    width: 80%;
+    margin: 50px;
+}

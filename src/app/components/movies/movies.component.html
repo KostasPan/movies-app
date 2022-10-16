@@ -1,21 +1,55 @@
-<div *ngIf="movies">
+<div *ngIf="movies" class="mat-elevation-z8">
+  <table mat-table [dataSource]="movies">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let movie">{{ movie.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="poster">
+      <th mat-header-cell *matHeaderCellDef>Poster Path</th>
+      <td mat-cell *matCellDef="let movie">
+        {{ movie.poster_path }}
+        <!-- <img *ngIf="movie.poster_path" width="50" [src]="MDB_IMG_BASE_URL + movie.poster_path" alt="" /> -->
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let movie">{{ movie.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="va">
+      <th mat-header-cell *matHeaderCellDef>Vote Average</th>
+      <td mat-cell *matCellDef="let movie">{{ movie.vote_average }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="vc">
+      <th mat-header-cell *matHeaderCellDef>Votes</th>
+      <td mat-cell *matCellDef="let movie">{{ movie.vote_count }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let movie">
+        <button mat-raised-button color="primary" [routerLink]="['movie', movie.id]">Movie Details</button>
+        <button mat-button color="primary" *ngIf="isAddBtnShown" (click)="openCollectionsDialog(movie)">
+          Add to Collection
+        </button>
+        <button mat-button color="primary" *ngIf="isRemoveBtnShown" (click)="removeFromCollection(movie.id)">
+          Remove from Collection
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['id', 'poster', 'title', 'va', 'vc', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['id', 'poster', 'title', 'va', 'vc', 'actions']"></tr>
+  </table>
+
   <mat-paginator
     *ngIf="pagination"
     [length]="pagination.total_results"
     [pageSize]="20"
     [pageIndex]="pagination.page - 1"
     (page)="handleChangePageEvent($event)"
-  >
-  </mat-paginator>
-  <li *ngFor="let movie of movies" class="list-group-item">
-    {{ MDB_IMG_BASE_URL + (movie.poster_path == null ? '' : movie.poster_path) }}
-    {{ movie.title }}
-    {{ movie.vote_average }}
-    {{ movie.vote_count }}
-    movie_id: {{ movie.id }}
-
-    <button mat-raised-button [routerLink]="['movie', movie.id]">Open Movie</button>
-
-    <button mat-raised-button *ngIf="isAddBtnShown" (click)="openCollectionsDialog(movie)">Add to Collection</button>
-  </li>
+  ></mat-paginator>
 </div>

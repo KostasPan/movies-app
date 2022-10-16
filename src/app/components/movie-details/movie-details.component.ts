@@ -28,7 +28,6 @@ export class MovieDetailsComponent implements OnInit {
     this.movieDetailsService.getMovieDetails(this.movieDetailsService.mid).subscribe({
       next: (response) => {
         this.movie = response;
-        console.log('movie details: ', this.movie);
       },
       error: (e) => {
         this.snackBarService.openSnackBar('Error occurred, try again later.', 'x');
@@ -44,7 +43,6 @@ export class MovieDetailsComponent implements OnInit {
       this.setNewGuestSessionId();
     } else {
       this.postRating(this.movie.id, this.session_id, { value: this.rating });
-      console.log(this.movie.id, this.session_id, { value: this.rating });
     }
   }
 
@@ -52,7 +50,6 @@ export class MovieDetailsComponent implements OnInit {
     if (this.rating && this.rating >= 0 && this.rating <= 10) {
       this.movieDetailsService.postRating(mid, sid, r).subscribe({
         next: (response) => {
-          console.log('postRating: ', response);
           this.snackBarService.openSnackBar(`Rating: ${response.status_message}`, 'x');
         },
         error: (e) => {
@@ -73,7 +70,6 @@ export class MovieDetailsComponent implements OnInit {
           response.guest_session_id,
           new Date(response.expires_at)
         );
-        console.log('setNewGuestSessionId: ', response);
         this.postRating(this.movie.id, this.session_id, { value: 10 });
       },
       error: (e) => {

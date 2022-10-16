@@ -28,22 +28,15 @@ export class DialogEntryComponent implements OnInit {
       currentRoute = currentRoute.firstChild;
     }
     this.routeConfig = currentRoute.routeConfig;
-    console.log('ROUTE: ', currentRoute.routeConfig);
 
     const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
-      width: '80%',
       data: { component: 'movie-details', routeConfig: this.routeConfig },
     });
 
     this.movieDetailsService.mid = this.route.snapshot.params['id'];
-    console.log(this.movieDetailsService.mid);
-
-    console.log(this.route.snapshot);
 
     dialogRef.afterClosed().subscribe((result) => {
       this.location.back();
-      console.log('TEST:', this.route.snapshot);
-
       this.movieDetailsService.mid = 0;
     });
   }

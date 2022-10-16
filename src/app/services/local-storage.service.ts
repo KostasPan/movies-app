@@ -10,11 +10,6 @@ export class LocalStorageService {
     localStorage.setItem(key, value);
   }
 
-  public getParsedData(key: string) {
-    const localStore = localStorage.getItem(key);
-    return JSON.parse(localStore != null ? localStore : '[]');
-  }
-
   public getData(key: string) {
     return localStorage.getItem(key);
   }

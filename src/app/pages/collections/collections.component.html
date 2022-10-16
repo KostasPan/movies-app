@@ -1,24 +1,24 @@
-<h1>Collection Create Page</h1>
+<button mat-raised-button color="accent" class="home-btn" routerLink="/search">Search movie</button>
+<button mat-stroked-button color="primary" (click)="isFormOpen = !isFormOpen">Add Collection</button>
 
-<button mat-raised-button (click)="isFormOpen = !isFormOpen">New Collection</button>
-<button mat-raised-button routerLink="">Home</button>
-
-<form *ngIf="isFormOpen">
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput placeholder="Ex. My Comedies" name="title" [(ngModel)]="title" required />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <input
-      matInput
-      placeholder="Ex. The best comedies i have ever seen"
-      name="description"
-      [(ngModel)]="description"
-      required
-    />
-  </mat-form-field>
-  <button mat-raised-button (click)="newCollectionData()">Create</button>
-</form>
+<div class="flex-center">
+  <form class="form" *ngIf="isFormOpen">
+    <mat-form-field class="max-width-field">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Ex. My Comedies" name="title" [(ngModel)]="title" required />
+    </mat-form-field>
+    <mat-form-field class="max-width-field">
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        placeholder="Ex. The best comedies i have ever seen"
+        name="description"
+        [(ngModel)]="description"
+        required
+      />
+    </mat-form-field>
+    <button mat-raised-button (click)="newCollectionData()">Submit</button>
+  </form>
+</div>
 
 <app-collections-list [data]="{ addToCollection: false }" [newCollection]="collection"></app-collections-list>

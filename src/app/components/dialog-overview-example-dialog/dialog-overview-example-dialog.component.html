@@ -1,14 +1,4 @@
-<h1 mat-dialog-title>Dialog Info</h1>
-
-DATA {{ data }}
-
-<div mat-dialog-content>
+<mat-dialog-content>
   <app-movie-details *ngIf="data.component == 'movie-details'"></app-movie-details>
-
   <app-collections-list *ngIf="data.component == 'collections-list'" [data]="data"></app-collections-list>
-</div>
-
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="onOkClick()" cdkFocusInitial>Ok</button>
-</div>
+</mat-dialog-content>

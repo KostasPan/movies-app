@@ -1,5 +1,6 @@
 <form>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="standard">
+    <mat-label>Search for a movie</mat-label>
     <input
       matInput
       type="text"
@@ -8,7 +9,7 @@
       inputStrength
       ngModel
       #search="ngModel"
-      placeholder="Search a movie"
+      placeholder="Ex. Deadpool 2"
       (keyup.enter)="!search.errors ? searchQuery(search.value) : null"
     />
     <mat-error *ngIf="search.errors?.['inputStrength']">

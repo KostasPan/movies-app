@@ -5,6 +5,8 @@ import { Movie } from 'src/app/interfaces/movie';
 import { DialogOverviewExampleDialogComponent } from '../dialog-overview-example-dialog/dialog-overview-example-dialog.component';
 import { Pagination } from 'src/app/interfaces/pagination';
 import { PageEvent } from '@angular/material/paginator';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-movies',
@@ -15,32 +17,30 @@ export class MoviesComponent {
   @Input() movies!: Array<Movie>;
   @Input() pagination!: Pagination;
   @Input() isAddBtnShown!: boolean;
+  @Input() isRemoveBtnShown!: boolean;
 
   @Output() pageChangeEvent = new EventEmitter<number>();
+  @Output() removeMovieEvent = new EventEmitter<number>();
 
   public MDB_IMG_BASE_URL: string = CONFIG.MOVIEDB_IMAGES;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private localStore: LocalStorageService, private snackBar: SnackbarService) {}
 
   handleChangePageEvent(event: PageEvent) {
-    console.log(event.pageIndex);
     this.pageChangeEvent.emit(event.pageIndex);
   }
 
   openCollectionsDialog(movie: Movie): void {
-    console.log('Movie = ', movie);
     const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
-      width: '80%',
       data: {
         component: 'collections-list',
         movie: movie,
         addToCollection: true,
       },
     });
+  }
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
-      console.log(result);
-    });
+  removeFromCollection(movieid: number) {
+    this.removeMovieEvent.emit(movieid);
   }
 }

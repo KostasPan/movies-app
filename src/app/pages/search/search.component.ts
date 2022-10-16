@@ -17,7 +17,6 @@ export class SearchComponent {
   constructor(private searchService: SearchService, private snackBarService: SnackbarService) {}
 
   onMovieQueryInput(query: string) {
-    console.log('query: ', query);
     this.query = query;
     this.getMoviesResults(query, 1);
   }
@@ -32,7 +31,8 @@ export class SearchComponent {
         this.movies_results = response.results;
         const { movies, ...pagination } = response;
         this.pagination_results = pagination;
-        console.log(this.pagination_results, this.movies_results);
+        console.log('Pagination: ', this.pagination_results);
+        console.log('Movies: ', this.movies_results);
       },
       error: (e) => {
         this.snackBarService.openSnackBar('Error occurred, try again later.', 'x');

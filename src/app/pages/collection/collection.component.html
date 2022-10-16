@@ -1,7 +1,13 @@
-<p>collection works!</p>
+<div class="navigation">
+  <button mat-raised-button color="accent" class="home-btn" routerLink="/search">Search movie</button>
+  <button mat-raised-button color="primary" routerLink="/collections">Collections</button>
+</div>
 
-<app-movies [movies]="movies" [isAddBtnShown]="false">
-  <!-- <app-pagination [pages]="pages"></app-pagination> -->
-</app-movies>
+<app-movies
+  [movies]="movies"
+  [isAddBtnShown]="false"
+  [isRemoveBtnShown]="true"
+  (removeMovieEvent)="onRemoveMovie($event)"
+></app-movies>
 
 <router-outlet></router-outlet>

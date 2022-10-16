@@ -2,40 +2,57 @@
   No movie details <br />
   {{ error_message }}
 </div>
-<div *ngIf="movie.id">
-  <form #rateForm>
-    <mat-form-field name="" class="example-ripple-form-field" appearance="fill">
-      <input
-        matInput
-        [(ngModel)]="rating"
-        required
-        min="1"
-        max="10"
-        required
-        type="number"
-        name="rating_input"
-        placeholder="Rating"
-        ngModel
-        #userRating="ngModel"
-        (keyup.enter)="!userRating.errors ? rateMovie() : null"
-      />
-      <mat-error *ngIf="userRating.errors"> - Rating range 1 to 10 </mat-error>
-    </mat-form-field>
-    <button type="button" mat-raised-button (click)="rateMovie()">Submit rating</button>
-  </form>
+<div *ngIf="movie" class="flex-center">
+  <h2>{{ movie.title }}</h2>
 
-  title {{ movie.title }} <br />
-  overview {{ movie.overview }} <br />
-  poster_path {{ MDB_IMG_BASE_URL + (movie.poster_path == null ? '' : movie.poster_path) }} <br />
   <img *ngIf="movie.poster_path" [src]="MDB_IMG_BASE_URL + movie.poster_path" alt="" />
-  budget {{ movie.budget }} <br />
-  release_date {{ movie.release_date }} <br />
-  revenue {{ movie.revenue }} <br />
-  vote_average {{ movie.vote_average }} <br />
-  vote_count {{ movie.vote_count }} <br />
 
-  spoken_languages
-  <li *ngFor="let lang of movie.spoken_languages">
-    {{ lang.english_name }}
-  </li>
+  <div class="rating" *ngIf="movie.id">
+    <form #rateForm>
+      <mat-form-field appearance="standard">
+        <input
+          matInput
+          [(ngModel)]="rating"
+          required
+          min="1"
+          max="10"
+          required
+          type="number"
+          name="rating_input"
+          placeholder="Set rating from 0 to 10"
+          ngModel
+          #userRating="ngModel"
+          (keyup.enter)="!userRating.errors ? rateMovie() : null; !userRating.errors ? rateForm.reset() : null"
+        />
+        <mat-error *ngIf="userRating.errors"> - Rating range 1 to 10 </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="center">
+    <div>Details</div>
+    <h3 class="card-heading">Overview</h3>
+    <div class="card-subheading">{{ movie.overview }}</div>
+
+    <h3 class="card-heading">Release date</h3>
+    <div class="card-subheading">{{ movie.release_date }}</div>
+
+    <h3 class="card-heading">budget</h3>
+    <div class="card-subheading">{{ movie.budget }} €</div>
+
+    <h3 class="card-heading">Poster path</h3>
+    <div class="card-subheading">{{ movie.release_date }}</div>
+
+    <h3 class="card-heading">Revenue</h3>
+    <div class="card-subheading">{{ movie.revenue }}</div>
+
+    <h3 class="card-heading">Vote average</h3>
+    <div class="card-subheading">{{ movie.vote_average }}</div>
+
+    <h3 class="card-heading">Vote Count</h3>
+    <div class="card-subheading">{{ movie.vote_count }}</div>
+
+    <h3>Spoken Languages</h3>
+    <div class="card-subheading" *ngFor="let lang of movie.spoken_languages">{{ lang.english_name }}</div>
+  </div>
 </div>
