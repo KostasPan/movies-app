@@ -40,6 +40,7 @@ export class MovieDetailsComponent implements OnInit {
   rateMovie() {
     this.session_id = this.movieDetailsService.getGuestSessionIdFromCookie();
     if (!this.session_id) {
+      console.log('test:', this.rating)
       this.setNewGuestSessionId();
     } else {
       this.postRating(this.movie.id, this.session_id, { value: this.rating });
@@ -48,6 +49,7 @@ export class MovieDetailsComponent implements OnInit {
 
   postRating(mid: number, sid: string, r: Rating) {
     if (this.rating && this.rating >= 0 && this.rating <= 10) {
+      console.log('rate1')
       this.movieDetailsService.postRating(mid, sid, r).subscribe({
         next: (response) => {
           this.snackBarService.openSnackBar(`Rating: ${response.status_message}`, 'x');
@@ -70,7 +72,7 @@ export class MovieDetailsComponent implements OnInit {
           response.guest_session_id,
           new Date(response.expires_at)
         );
-        this.postRating(this.movie.id, this.session_id, { value: 10 });
+        this.postRating(this.movie.id, this.session_id, { value: this.rating });
       },
       error: (e) => {
         this.snackBarService.openSnackBar('Error occurred, try again later.', 'x');
