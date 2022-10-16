@@ -39,9 +39,6 @@ export class CollectionComponent implements OnInit {
   }
 
   onRemoveMovie(movieid: number) {
-    console.log(`remove movie ${movieid} from collection`);
-    console.log(this.movies);
-
     if (this.collection_id) {
       let c = this.localStore.getData('collections');
       if (c) {
