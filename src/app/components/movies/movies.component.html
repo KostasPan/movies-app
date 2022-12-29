@@ -53,3 +53,7 @@
     (page)="handleChangePageEvent($event)"
   ></mat-paginator>
 </div>
+
+<div *ngIf="movies">
+  <app-movies-chart [movies]="movies"></app-movies-chart>
+</div>

@@ -14,6 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialExampleModule } from '../material.module';
+import { NgChartsModule } from 'ng2-charts';
 
 import { InputStrengthDirective } from './directives/search-tab-validation.directive';
 import { MoviesComponent } from './components/movies/movies.component';
@@ -23,6 +24,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { CollectionsComponent } from './pages/collections/collections.component';
 import { CollectionsListComponent } from './components/collections-list/collections-list.component';
 import { CollectionComponent } from './pages/collection/collection.component';
+import { MoviesChartComponent } from './components/movies-chart/movies-chart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { CollectionComponent } from './pages/collection/collection.component';
     CollectionsComponent,
     CollectionsListComponent,
     CollectionComponent,
+    MoviesChartComponent,
   ],
   imports: [
     MaterialExampleModule,
@@ -46,6 +49,7 @@ import { CollectionComponent } from './pages/collection/collection.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgChartsModule
   ],
   entryComponents: [DialogOverviewExampleDialogComponent],
   providers: [CookieService],
